@@ -20,8 +20,8 @@ function load_publications() {
     var bibtex;
     var template;
     deferred.push($.get("publications.html", function(data) {$("#main").html(data);}));
-    deferred.push($.get("publications.bib", function(data, bibtex) {bibtex = data;}));
-    deferred.push($.get("bibtex_template.html", function(data, template) {template = data;}));
+    deferred.push($.get("publications.bib", function(data) {bibtex = data;}));
+    deferred.push($.get("bibtex_template.html", function(data) {template = data;}));
     $.when.apply($, deferred).done(function() {
         (new BibtexDisplay()).displayBibtex(bibtex, $("#bibtex_display"), template)
     });
