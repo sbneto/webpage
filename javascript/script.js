@@ -1,10 +1,10 @@
 $(document).ready(function () {
     load_header();
     load_home();
-    $("home").click(load_home)
-    $("about").click(load_about)
-    $("publications").click(load_publications)
-    $("work").click(load_work)
+    $("#home").click(load_home)
+    $("#about").click(load_about)
+    $("#publications").click(load_publications)
+    $("#work").click(load_work)
 });
 
 function load_header() {
