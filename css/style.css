@@ -60,6 +60,7 @@ a {
   background: #373737; 
   font-weight: bold;
   padding: 5px 10px 5px 10px; 
+  cursor: pointer;
 }
 
 #menu a:hover { 
