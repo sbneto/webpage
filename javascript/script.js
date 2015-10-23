@@ -9,25 +9,25 @@ $(document).ready(function () {
 
 function load_header() {
     $("#header").load('header.html');
-    return false
+    return false;
 }
 
 function load_home() {
     $("#main").load('home.html');
-    return false
+    return false;
 }
 
 function load_about() {
     $("#main").load('about.html');
-    return false
+    return false;
 }
 
 function load_publications() {
     $("#main").load('publications.html');
-    return false
+    return false;
 }
 
 function load_work() {
     $("#main").load('work.html');
-    return false
+    return false;
 }
