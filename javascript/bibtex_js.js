@@ -250,55 +250,6 @@ function BibtexDisplay() {
     value = value.replace(/\{(.*?)\}/g, '$1');
     return value;
   }
-  
-  this.displayBibtex2 = function(i, o) {
-    var b = new BibtexParser();
-    b.setInput(i);
-    b.bibtex();
-
-    var e = b.getEntries();
-    var old = o.find("*");
-  
-    for (var item in e) {
-      var tpl = $(".bibtex_template").clone().removeClass('bibtex_template');
-      tpl.addClass("unused");
-      
-      for (var key in e[item]) {
-      
-        var fields = tpl.find("." + key.toLowerCase());
-        for (var i = 0; i < fields.size(); i++) {
-          var f = $(fields[i]);
-          f.removeClass("unused");
-          var value = this.fixValue(e[item][key]);
-          if (f.is("a")) {
-            f.attr("href", value);
-          } else {
-            var currentHTML = f.html() || "";
-            if (currentHTML.match("%")) {
-              // "complex" template field
-              f.html(currentHTML.replace("%", value));
-            } else {
-              // simple field
-              f.html(value);
-            }
-          }
-        }
-      }
-    
-      var emptyFields = tpl.find("span .unused");
-      emptyFields.each(function (key,f) {
-        if (f.innerHTML.match("%")) {
-          f.innerHTML = "";
-        }
-      });
-    
-      o.append(tpl);
-      tpl.show();
-    }
-    
-    old.remove();
-  }
-
 
   this.displayBibtex = function(input, output) {
     // parse bibtex input
@@ -382,9 +333,9 @@ function bibtex_js_draw() {
 //   // draw bibtex when loaded
 //   $(document).ready(function () {
 //     // check for template, add default
-//     if ($(".bibtex_template").size() == 0) {
-//       $("body").append("<div class=\"bibtex_template\"><div class=\"if author\" style=\"font-weight: bold;\">\n  <span class=\"if year\">\n    <span class=\"year\"></span>, \n  </span>\n  <span class=\"author\"></span>\n  <span class=\"if url\" style=\"margin-left: 20px\">\n    <a class=\"url\" style=\"color:black; font-size:10px\">(view online)</a>\n  </span>\n</div>\n<div style=\"margin-left: 10px; margin-bottom:5px;\">\n  <span class=\"title\"></span>\n</div></div>");
-//     }
+    // if ($(".bibtex_template").size() == 0) {
+    //   $("body").append("<div class=\"bibtex_template\"><div class=\"if author\" style=\"font-weight: bold;\">\n  <span class=\"if year\">\n    <span class=\"year\"></span>, \n  </span>\n  <span class=\"author\"></span>\n  <span class=\"if url\" style=\"margin-left: 20px\">\n    <a class=\"url\" style=\"color:black; font-size:10px\">(view online)</a>\n  </span>\n</div>\n<div style=\"margin-left: 10px; margin-bottom:5px;\">\n  <span class=\"title\"></span>\n</div></div>");
+    // }
 
 //     bibtex_js_draw();
 //   });
