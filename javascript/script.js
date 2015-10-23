@@ -8,26 +8,26 @@ $(document).ready(function () {
 });
 
 function load_header() {
+    event.preventDefault();
     $("#header").load('header.html');
-    return false;
 }
 
 function load_home() {
+    event.preventDefault();
     $("#main").load('home.html');
-    return false;
 }
 
 function load_about() {
+    event.preventDefault();
     $("#main").load('about.html');
-    return false;
 }
 
 function load_publications() {
+    event.preventDefault();
     $("#main").load('publications.html');
-    return false;
 }
 
 function load_work() {
+    event.preventDefault();
     $("#main").load('work.html');
-    return false;
 }
