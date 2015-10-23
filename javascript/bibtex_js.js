@@ -251,7 +251,7 @@ function BibtexDisplay() {
     return value;
   }
 
-  this.displayBibtex = function(input, output) {
+  this.displayBibtex = function(input, output, template) {
     // parse bibtex input
     var b = new BibtexParser();
     b.setInput(input);
@@ -266,8 +266,9 @@ function BibtexDisplay() {
       var entry = entries[entryKey];
       
       // find template
-      var tpl = $(".bibtex_template").clone().removeClass('bibtex_template');
-      
+      //var tpl = $(".bibtex_template").clone().removeClass('bibtex_template');
+      var tpl = $.parseHTML(template).clone().removeClass('bibtex_template');
+
       // find all keys in the entry
       var keys = [];
       for (var key in entry) {

@@ -16,15 +16,25 @@ function load_about() {
 }
 
 function load_publications() {
-    $("#main").load("publications.html", function() {
-        if ($(".bibtex_template").size() == 0) {
-            $("#main").append("<div class=\"bibtex_template\"><div class=\"if author\" style=\"font-weight: bold;\">\n  <span class=\"if year\">\n    <span class=\"year\"></span>, \n  </span>\n  <span class=\"author\"></span>\n  <span class=\"if url\" style=\"margin-left: 20px\">\n    <a class=\"url\" style=\"color:black; font-size:10px\">(view online)</a>\n  </span>\n</div>\n<div style=\"margin-left: 10px; margin-bottom:5px;\">\n  <span class=\"title\"></span>\n</div></div>");
-            $(".bibtex_template").hide();
-        }
-        $.get("publications.bib", function(bibtex) {
-            (new BibtexDisplay()).displayBibtex(bibtex, $("#bibtex_display"));
-        });
-    });}
+    deferred = [];
+    var bibtex;
+    var template;
+    deferred.push($("#main").load("publications.html"));
+    deferred.push($.get("publications.bib", function(data) {bibtex = data;}));
+    deferred.push($.get("template.html", function(data) {template = data;}));
+    $.when(deferred).done(function() {
+        (new BibtexDisplay()).displayBibtex(bibtex, $("#bibtex_display"), template)
+    });
+    // $("#main").load("publications.html", function() {
+    //     if ($(".bibtex_template").size() == 0) {
+    //         $("#main").append("<div class=\"bibtex_template\"><div class=\"if author\" style=\"font-weight: bold;\">\n  <span class=\"if year\">\n    <span class=\"year\"></span>, \n  </span>\n  <span class=\"author\"></span>\n  <span class=\"if url\" style=\"margin-left: 20px\">\n    <a class=\"url\" style=\"color:black; font-size:10px\">(view online)</a>\n  </span>\n</div>\n<div style=\"margin-left: 10px; margin-bottom:5px;\">\n  <span class=\"title\"></span>\n</div></div>");
+    //         $(".bibtex_template").hide();
+    //     }
+    //     $.get("publications.bib", function(bibtex) {
+    //         (new BibtexDisplay()).displayBibtex(bibtex, $("#bibtex_display"));
+    //     });
+    // });
+}
 
 function load_work() {
     $("#main").load("work.html");
