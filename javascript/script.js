@@ -22,7 +22,7 @@ function load_publications() {
         }
         $(".bibtex_template").hide();
         (new BibtexDisplay()).displayBibtex(disp, $("#bibtex_display"));
-    }}
+    });}
 
 function load_work() {
     $("#main").load("work.html");
