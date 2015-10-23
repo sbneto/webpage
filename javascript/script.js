@@ -1,10 +1,10 @@
 $(document).ready(function () {
     load_header();
     load_home();
-    document.getElementById("home").onclick = load_home
-    document.getElementById(("about").onclick = load_about
-    document.getElementById(("publications").onclick = load_publications
-    document.getElementById(("work").onclick = load_work
+    document.getElementById("home").onclick = load_home;
+    document.getElementById(("about").onclick = load_about;
+    document.getElementById(("publications").onclick = load_publications;
+    document.getElementById(("work").onclick = load_work;
 });
 
 function load_header() {
