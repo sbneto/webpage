@@ -19,7 +19,7 @@ function load_publications() {
     deferred = [];
     var bibtex;
     var template;
-    deferred.push($("#main").load("publications.html"));
+    deferred.push($.get("publications.html", function(data) {$("#main").html(data);}));
     deferred.push($.get("publications.bib", function(data, bibtex) {bibtex = data;}));
     deferred.push($.get("bibtex_template.html", function(data, template) {template = data;}));
     $.when(deferred).done(function() {
