@@ -17,6 +17,7 @@ function load_home() {
 
 function load_about() {
     $("#main").load('about.html');
+    return false';
 }
 
 function load_publications() {
