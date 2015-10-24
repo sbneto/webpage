@@ -13,7 +13,7 @@ function load_footer() {
         var pull = data.lastIndexOf("pull");
         var timeUTC = data.substr(pull - 17, 10);
         var date = new Date(timeUTC*1000);
-        $("#footer").html(date);
+        $("#footer_date").html(date);
     })
 }
 
