@@ -9,12 +9,14 @@ function load_header() {
 }
 
 function load_footer() {
-    $.get(".git/logs/HEAD", function(data) {
-        var pull = data.lastIndexOf("pull");
-        var timeUTC = data.substr(pull - 17, 10);
-        var date = new Date(timeUTC*1000);
-        $("#footer_date").html(date);
-    })
+    $("#footer").load("footer.html", function () {
+        $.get(".git/logs/HEAD", function(data) {
+            var pull = data.lastIndexOf("pull");
+            var timeUTC = data.substr(pull - 17, 10);
+            var date = new Date(timeUTC*1000);
+            $("#footer_date").html(date);
+        });
+    });
 }
 
 function load_home() {
