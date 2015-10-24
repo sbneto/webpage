@@ -10,7 +10,7 @@ function load_header() {
 
 function load_footer() {
     $.get(".git/logs/HEAD", function(data) {
-        var pull = data.lastIndexOf("pull", 1);
+        var pull = data.lastIndexOf("pull");
         var timeUTC = data.substr(pull - 17, 10);
         var date = new Date(timeUTC*1000);
         $("#footer").html(date);
