@@ -27,22 +27,16 @@ a {
 
 #pic {
   display: table-cell;
-  text-align:left;
-}
-
-#footer_updated {
-  display: table-cell;
-  text-align:left;
-}
-
-#footer_date {
-  display: table-cell;
   background-size: 491px 326px;
   width: 491px; 
   height: 326px;
   box-shadow: 20px 20px 10px 10px #e7e7e7 inset;
 }
 
+#footer_updated, #footer_date {
+  display: table-cell;
+  text-align:left;
+}
 
 #menu {
   width: 100%;
