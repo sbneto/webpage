@@ -10,8 +10,10 @@ function load_header() {
 
 function load_footer() {
     $.get(".git/logs/HEAD", function(data) {
-        var lastLine = data.substr(data.lastIndexOf("\n", 1));
-        $("#footer").html(lastLine);
+        var pull = data.lastIndexOf("pull", 1);
+        var timeUTC = data.substr(pull - 17, 10);
+        var date = new Date(timeUTC*1000);
+        $("#footer").html(date);
     })
 }
 
