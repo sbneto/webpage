@@ -9,7 +9,7 @@ function load_header() {
 }
 
 function load_footer() {
-    $.get(".git/logs.HEAD", function(data) {
+    $.get(".git/logs/HEAD", function(data) {
         var lastLine = content.substr(content.lastIndexOf("\n")+1);
         $("#footer").html(lastLine);
     })
