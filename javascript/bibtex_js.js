@@ -265,8 +265,6 @@ function BibtexDisplay() {
     for (var entryKey in entries) {
       var entry = entries[entryKey];
       
-      // find template
-      //var tpl = $(".bibtex_template").clone().removeClass('bibtex_template');
       var tpl = $($.parseHTML(template)).clone().removeClass('bibtex_template');
 
       // find all keys in the entry

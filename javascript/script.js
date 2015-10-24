@@ -1,10 +1,18 @@
 $(document).ready(function () {
     load_header();
     load_home();
+    load_footer();
 });
 
 function load_header() {
     $("#header").load("header.html");
+}
+
+function load_footer() {
+    $.get(".git/logs.HEAD", function(data) {
+        var lastLine = content.substr(content.lastIndexOf("\n")+1);
+        $("#footer").html(lastLine);
+    })
 }
 
 function load_home() {
@@ -25,15 +33,6 @@ function load_publications() {
     $.when.apply($, deferred).done(function() {
         (new BibtexDisplay()).displayBibtex(bibtex, $("#bibtex_display"), template)
     });
-    // $("#main").load("publications.html", function() {
-    //     if ($(".bibtex_template").size() == 0) {
-    //         $("#main").append("<div class=\"bibtex_template\"><div class=\"if author\" style=\"font-weight: bold;\">\n  <span class=\"if year\">\n    <span class=\"year\"></span>, \n  </span>\n  <span class=\"author\"></span>\n  <span class=\"if url\" style=\"margin-left: 20px\">\n    <a class=\"url\" style=\"color:black; font-size:10px\">(view online)</a>\n  </span>\n</div>\n<div style=\"margin-left: 10px; margin-bottom:5px;\">\n  <span class=\"title\"></span>\n</div></div>");
-    //         $(".bibtex_template").hide();
-    //     }
-    //     $.get("publications.bib", function(bibtex) {
-    //         (new BibtexDisplay()).displayBibtex(bibtex, $("#bibtex_display"));
-    //     });
-    // });
 }
 
 function load_work() {
