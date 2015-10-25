@@ -38,6 +38,11 @@ a {
   text-align:right;
 }
 
+#footer_date {
+  width: 0px;
+  white-space: nowrap;
+}
+
 #menu {
   width: 100%;
   background: #373737; 
