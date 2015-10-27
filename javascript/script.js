@@ -28,6 +28,7 @@ $(document).ready(function () {
 })
 
 function deffered_load(element, url) {
+    $.ajaxSetup({ cache: false });
     return $.get(url, function(data) {$(element).html(data);});
 }
 
@@ -37,7 +38,9 @@ function load_header() {
 
 function load_footer() {
     $("#footer").load("footer.html", function () {
+        $.ajaxSetup({ cache: false });
         $.get(".git/logs/HEAD", function(data) {
+            $.ajaxSetup({ cache: true });
             var pull = data.lastIndexOf(">");
             var timeUTC = data.substr(pull + 2, 10);
             var date = new Date(timeUTC*1000);
