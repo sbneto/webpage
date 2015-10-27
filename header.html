@@ -1,16 +1,37 @@
-<div id="top">
-    <div id="info">
-        <span id="info_name">Samuel Barbosa</span>
-        <br>sam@ime.usp.br
-        <br><a target="_blank" href="https://github.com/sbneto">https://github.com/sbneto</a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#home">Samuel Barbosa</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#home">Home</a></li>
+                <li><a href="#about">About me</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#work">Work</a></li>
+            </ul>
+        </div>
     </div>
-    <div id="pic" style="background-image: url(images/hw1.jpg)"></div>
-</div>
-<div id="menu">
-    <ul>
-        <li><a onclick="load_home()">Home</a></li>
-        <li><a onclick="load_about()">About me</a></li>
-        <li><a onclick="load_publications()">Publications</a></li>
-        <li><a onclick="load_work()">Work</a></li>
-    </ul>
+</nav>
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="row vertical-align text-center">
+            <div id="info" class="col-md-8">
+                <span id="info_name">Samuel Barbosa</span>
+                <br>sam@ime.usp.br
+                <br><a target="_blank" href="https://github.com/sbneto">https://github.com/sbneto</a>
+            </div>
+            <div class="col-md-4">
+                <img src="images/hw1.jpg" class="img-thumbnail" data-holder-rendered="true">
+            </div>
+        </div>
+    </div>
 </div>

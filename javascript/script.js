@@ -1,11 +1,38 @@
 $(document).ready(function () {
-    load_header();
-    load_home();
-    load_footer();
-});
+    deferred = [];
+    deferred.push(load_header());
+    deferred.push(load_home());
+    deferred.push(load_footer());
+    $.when.apply($, deferred).done(function() {
+        //Page ready
+        
+        $(".nav a").on("click", function() {
+            $(".nav").find(".active").removeClass("active");
+            $(this).parent().addClass("active");
+            switch($(this).attr('href')) {
+            case "#about":
+                load_about();
+                break;
+            case "#publications":
+                load_publications();
+                break;
+            case "#work":
+                load_work();
+                break;
+            default:
+                load_home();
+            };
+        });
+
+    });
+})
+
+function deffered_load(element, url) {
+    return $.get(url, function(data) {$(element).html(data);});
+}
 
 function load_header() {
-    $("#header").load("header.html");
+    return deffered_load("#header", "header.html");
 }
 
 function load_footer() {
@@ -20,18 +47,18 @@ function load_footer() {
 }
 
 function load_home() {
-    $("#main").load("home.html");
+    return deffered_load("#main", "home.html");
 }
 
 function load_about() {
-    $("#main").load("about.html");
+    return deffered_load("#main", "about.html");
 }
 
 function load_publications() {
     deferred = [];
     var bibtex;
     var template;
-    deferred.push($.get("publications.html", function(data) {$("#main").html(data);}));
+    deferred.push(deffered_load("#main", "publications.html"));
     deferred.push($.get("publications.bib", function(data) {bibtex = data;}));
     deferred.push($.get("bibtex_template.html", function(data) {template = data;}));
     $.when.apply($, deferred).done(function() {
@@ -40,5 +67,5 @@ function load_publications() {
 }
 
 function load_work() {
-    $("#main").load("work.html");
+    return deffered_load("#main", "work.html");
 }
