@@ -11,24 +11,6 @@ body {
     align-items: center;
 }
 
-/*#top, #footer {
-  overflow: hidden;
-  width: 100%; 
-  display: table;
-}*/
-
-
 #info_name {
   font-size: 22pt;
-}
-
-/*#footer_updated, #footer_date {
-  display: table-cell;
-  text-align:right;
-}*/
-
-#footer_date {
-  width: 1px;
-  padding: 0px 20px 0px 0px;
-  white-space: nowrap;
 }
