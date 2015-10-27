@@ -1,14 +1,14 @@
 body {
   background-color: #e7e7e7;
   color: #373737;
-  padding: 0; 
-  margin: 0; 
+  padding: 0px; 
+  margin: 0px; 
   font: 14pt Arial, sans-serif; 
 }
 
 a {
-  padding: 0; 
-  margin: 0; 
+  padding: 0px; 
+  margin: 0px; 
 }
 
 #top, #footer {
@@ -44,26 +44,27 @@ a {
 
 #footer_date {
   width: 1px;
+  padding: 0px 0px 20px 0px;
   white-space: nowrap;
 }
 
 #menu {
   width: 100%;
   background: #373737; 
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   text-align:center;
 }
 
 #menu ul { 
-  margin:0; 
-  padding: 0;
+  margin:0px; 
+  padding: 0px;
 }
 
 #menu li  { 
   display:inline-block;
-  padding: 0; 
-  margin: 0; 
+  padding: 0px; 
+  margin: 0px; 
 }
 
 #menu a {
