@@ -38,8 +38,8 @@ function load_header() {
 function load_footer() {
     $("#footer").load("footer.html", function () {
         $.get(".git/logs/HEAD", function(data) {
-            var pull = data.lastIndexOf("-");
-            var timeUTC = data.substr(pull - 11, 10);
+            var pull = data.lastIndexOf(">");
+            var timeUTC = data.substr(pull + 2, 10);
             var date = new Date(timeUTC*1000);
             $("#footer_date").html(date);
         });
