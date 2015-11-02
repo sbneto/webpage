@@ -9,6 +9,8 @@ body {
 
 .jumbotron {
   margin-top: 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .vertical-align {
