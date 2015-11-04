@@ -11,13 +11,13 @@ $(document).ready(function () {
             $(".nav").find(".active").removeClass("active");
             $(this).parent().addClass("active");
             switch($(this).attr('href')) {
-            case "#about":
+            case "about.html":
                 load_about();
                 break;
-            case "#publications":
+            case "publications.html":
                 load_publications();
                 break;
-            case "#work":
+            case "work.html":
                 load_work();
                 break;
             default:
