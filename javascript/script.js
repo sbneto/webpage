@@ -14,6 +14,7 @@ $(document).ready(function () {
         });
         $(".navbar-brand").on("click", function(e) {
             e.preventDefault();
+            $(".nav").find(".active").removeClass("active");
             load_main($(this).attr('href'))
         });
     });
