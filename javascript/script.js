@@ -10,23 +10,30 @@ $(document).ready(function () {
             e.preventDefault();
             $(".nav").find(".active").removeClass("active");
             $(this).parent().addClass("active");
-            switch($(this).attr('href')) {
-            case "about.html":
-                load_about();
-                break;
-            case "publications.html":
-                load_publications();
-                break;
-            case "work.html":
-                load_work();
-                break;
-            default:
-                load_home();
-            };
+            load_main($(this).attr('href'))
         });
-
+        $(".navbar-brand").on("click", function(e) {
+            e.preventDefault();
+            load_main($(this).attr('href'))
+        });
     });
 })
+
+function load_main(option) {
+    switch(option) {
+        case "about.html":
+            load_about();
+            break;
+        case "publications.html":
+            load_publications();
+            break;
+        case "work.html":
+            load_work();
+            break;
+        default:
+            load_home();
+        };
+}
 
 function deffered_load(element, url) {
     $.ajaxSetup({ cache: false });
