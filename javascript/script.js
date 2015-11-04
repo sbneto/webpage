@@ -6,8 +6,8 @@ $(document).ready(function () {
     $.when.apply($, deferred).done(function() {
         //Page ready
         
-        $(".nav a").on("click", function() {
-            $(this).preventDefault();
+        $(".nav a").on("click", function(e) {
+            e.preventDefault();
             $(".nav").find(".active").removeClass("active");
             $(this).parent().addClass("active");
             switch($(this).attr('href')) {
