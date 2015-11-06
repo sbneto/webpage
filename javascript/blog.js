@@ -10,28 +10,67 @@ function add_blog(element, template, apiKey, blogId) {
     });
 }
 
+function get_element(dict, element) {
+    var path = element.split(".");
+    var step;
+    var current = dict;
+    for (var i in path) {
+        step = path[i];
+        if (step in current) {
+            current = current[step];
+        } else {
+            return null;
+        }
+    }
+    return current;
+}
+
+function check_for_key(keys_text, dict, set) {
+    var found;
+    var key;
+    var keys = keys_text.split(" ");
+    for (var i in keys) {
+        key = keys[i];
+        if(!(key in set)) {
+            found = get_element(dict, key);
+            if (found != null)
+                set[key] = true;
+        }
+    }
+}
+
+function get_keys_from_elements(selector, property, keys, dict, template) {
+    var value;
+    $(template).find(selector).each(function(i, e) {
+        value = $(e).attr(property);
+        check_for_key(value, dict, keys);
+    });
+}
+
 function add_response(blog, response, template) {
     var tpl = $.parseHTML(template);
-    var keys = {};
-    var cls;
+    var keys_classes = {};
+    var keys_urls = {};
     if(response.items.length > 0) {
-        $(tpl).find("[class!=''][class]").each(function(i, e) {
-            multi_cls = $(e).attr("class").split(" ");
-            for (var cls_i in multi_cls) {
-                cls = multi_cls[cls_i];
-                if(!(cls in keys)) {
-                    if (cls in response.items[0])
-                        keys[cls] = true;
-                }
-            }
-        });
+        //find classes in template that match items in the response
+        get_keys_from_elements("[class!=''][class]", "class", keys_classes, response.items[0], template);
+        //find href elements to be replaced
+        get_keys_from_elements("[href!=''][href]", "href", keys_urls, response.items[0], template);
+        //process elements in the response
         $("#" + blog).empty()
         var clone;
         for (var item in response.items) {
             clone = $($.parseHTML(template)).clone();
-            for (var key in keys) {
-                ($(clone).find("." + key)).each(function(i, e) {
-                    $(e).append(response.items[item][key]);
+            //add data in the classes present in the response
+            for (var key in keys_classes) {
+                ($(clone).find("." + key.replace(".", "\\."))).each(function(i, e) {
+                    $(e).append(get_element(response.items[item], key));
+                });
+            }
+            //replace the urls in the href elements
+            for (var key in keys_urls) {
+                ($(clone).find("a[href=\"" + key + "\"]")).each(function(i, e) {
+                    $(e).attr("href", get_element(response.items[item], key));
                 });
             }
             $("#" + blog).append(clone)
