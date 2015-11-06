@@ -1,5 +1,8 @@
-$(document).ready(function () {
-    deferred = [];
+var apiKey = "AIzaSyD5-0K3ejlK144Nl4FDQNk_9Q3jMSPZ-og"
+var blogId = "1713900942386127940"
+
+function initialize() {
+    var deferred = [];
     deferred.push(load_header());
     deferred.push(load_home());
     deferred.push(load_footer());
@@ -18,7 +21,7 @@ $(document).ready(function () {
             load_main($(this).attr('href'))
         });
     });
-})
+}
 
 function load_main(option) {
     switch(option) {
@@ -59,7 +62,14 @@ function load_footer() {
 }
 
 function load_home() {
-    return deffered_load("#main", "home.html");
+    var deferred = [];
+    var template;
+    deferred.push(deffered_load("#main", "home.html"));
+    deferred.push($.get("blog_template.html", function(data) {template = data;}));
+    $.when.apply($, deferred).done(function() {
+        add_blog("blog", template, apiKey, blogId);
+    });
+    return 
 }
 
 function load_about() {
@@ -67,7 +77,7 @@ function load_about() {
 }
 
 function load_publications() {
-    deferred = [];
+    var deferred = [];
     var bibtex;
     var template;
     deferred.push(deffered_load("#main", "publications.html"));
