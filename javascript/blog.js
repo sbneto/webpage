@@ -14,21 +14,27 @@ function add_response(blog, response, template) {
     var tpl = $.parseHTML(template);
     var keys = {};
     var cls;
-    $(tpl).find("[class!=''][class]").each(function(i, e) {
-        cls = $(e).attr("class");
-        if(!(cls in keys)) {
-            keys[cls] = true;
+    if(response.items.length > 0) {
+        $(tpl).find("[class!=''][class]").each(function(i, e) {
+            multi_cls = $(e).attr("class").split(" ");
+            for (var cls_i in multi_cls) {
+                cls = multi_cls[cls_i];
+                if(!(cls in keys)) {
+                    if (cls in response.items[0])
+                        keys[cls] = true;
+                }
+            }
+        });
+        $("#" + blog).empty()
+        var clone;
+        for (var item in response.items) {
+            clone = $($.parseHTML(template)).clone();
+            for (var key in keys) {
+                ($(clone).find("." + key)).each(function(i, e) {
+                    $(e).append(response.items[item][key]);
+                });
+            }
+            $("#" + blog).append(clone)
         }
-    });
-    $("#" + blog).empty()
-    var clone;
-    for (var item in response.items) {
-        clone = $($.parseHTML(template)).clone();
-        for (var key in keys) {
-            ($(clone).find("." + key)).each(function(i, e) {
-                $(e).append(response.items[item][key]);
-            });
-        }
-        $("#" + blog).append(clone)
     }
 }

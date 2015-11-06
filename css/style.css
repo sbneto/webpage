@@ -1,13 +1,18 @@
 body {
+  font-size: 14pt;
   background-color: #ffffff;
-  color: #373737;
-  font: 14pt Arial, sans-serif; 
   padding-top: 0px;
   padding-bottom: 0px;
   margin-bottom: 60px;
 }
 
+.navbar {
+  font: 14pt Arial, sans-serif; 
+}
+
 .jumbotron {
+  /*font: 14pt Arial, sans-serif; */
+  font-size: 14pt;
   margin-top: 50px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -19,7 +24,11 @@ body {
 }
 
 #info_name {
-  font-size: 22pt;
+  font: 24pt Arial, sans-serif; 
+}
+
+.sidebar-module {
+  font-size: 11pt;
 }
 
 /* Sticky footer */
@@ -28,6 +37,7 @@ html {
   min-height: 100%;
 }
 #footer {
+  font-size: 11pt;
   position: absolute;
   bottom: 0;
   width: 100%;

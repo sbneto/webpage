@@ -1,4 +1,4 @@
-var apiKey = "AIzaSyD5-0K3ejlK144Nl4FDQNk_9Q3jMSPZ-og"
+var apiKey = "AIzaSyC8OVwZk45gWWus2l6w-s6tEdyx8TtV-i0"
 var blogId = "1713900942386127940"
 
 function initialize() {
