@@ -13,7 +13,8 @@ function initialize() {
             e.preventDefault();
             $(".nav").find(".active").removeClass("active");
             $(this).parent().addClass("active");
-            load_main($(this).attr('href'))
+            load_main($(this).attr('href'));
+            $(".collapse").collapse("hide");
         });
         $(".navbar-brand").on("click", function(e) {
             e.preventDefault();
