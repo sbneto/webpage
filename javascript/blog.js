@@ -1,3 +1,4 @@
+//add blogger content to a element using a given template
 function add_blog(element, template, apiKey, blogId) {
     gapi.client.setApiKey(apiKey);
     gapi.client.load('blogger', 'v3').then(function () {
@@ -10,6 +11,8 @@ function add_blog(element, template, apiKey, blogId) {
     });
 }
 
+//return nested items in the dictionary
+//return null if nesting does not exist
 function get_element(dict, element) {
     var path = element.split(".");
     var step;
@@ -25,6 +28,7 @@ function get_element(dict, element) {
     return current;
 }
 
+//check if keys are in the dictionary and add to key to set in case it is
 function check_for_key(keys_text, dict, set) {
     var found;
     var key;
@@ -39,6 +43,9 @@ function check_for_key(keys_text, dict, set) {
     }
 }
 
+//for all elements in a given class, find the existing elements in 
+//a given property that are keys in a dictionary and are present
+//in the template
 function get_keys_from_elements(selector, property, keys, dict, template) {
     var value;
     $(template).find(selector).each(function(i, e) {

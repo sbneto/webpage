@@ -8,17 +8,22 @@ function initialize() {
     deferred.push(load_footer());
     $.when.apply($, deferred).done(function() {
         //Page ready
-        
         $(".nav a").on("click", function(e) {
-            e.preventDefault();
+            e.preventDefault(); 
+            //colapse right after click
             $(".collapse").collapse("hide");
+            //highlight the option selected
             $(".nav").find(".active").removeClass("active");
             $(this).parent().addClass("active");
+            //load chosen option in the main page
             load_main($(this).attr('href'));
         });
         $(".navbar-brand").on("click", function(e) {
             e.preventDefault();
+            //remove all highlited content in navbar 
+            //(maybe should highlight home)
             $(".nav").find(".active").removeClass("active");
+            //load home
             load_main($(this).attr('href'))
         });
     });
