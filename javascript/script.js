@@ -11,10 +11,10 @@ function initialize() {
         
         $(".nav a").on("click", function(e) {
             e.preventDefault();
+            $(".collapse").collapse("hide");
             $(".nav").find(".active").removeClass("active");
             $(this).parent().addClass("active");
             load_main($(this).attr('href'));
-            $(".collapse").collapse("hide");
         });
         $(".navbar-brand").on("click", function(e) {
             e.preventDefault();
