@@ -27,17 +27,30 @@ img {
   height: auto;
 }
 
-/** {
+* {
     outline: 1px solid red;
-}*/
-
+}
 
 .navbar {
-  font: 0.8em Arial, sans-serif; 
+  font: 18px Arial, sans-serif; 
+}
+
+.navbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-header:before {
+  content: none;
+}
+
+.navbar-header:after {
+  content: none;
 }
 
 .navbar-brand {
-  font-size: 1.1em;
+  font-size: 20px;
 }
 
 .jumbotron {
