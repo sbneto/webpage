@@ -1,15 +1,18 @@
 var apiKey = "AIzaSyC8OVwZk45gWWus2l6w-s6tEdyx8TtV-i0"
 var blogId = "1713900942386127940"
 
+$(window).on("hashchange", function () {
+    load_main(get_current_page());
+});
+
 function initialize() {
     var deferred = [];
     deferred.push(load_header());
-    deferred.push(load_home());
     deferred.push(load_footer());
+    deferred.push(load_main(get_current_page()));
     $.when.apply($, deferred).done(function() {
         //Page ready
         $(".nav a").on("click", function(e) {
-            e.preventDefault(); 
             //colapse right after click
             $(".collapse").collapse("hide");
             //highlight the option selected
@@ -19,7 +22,6 @@ function initialize() {
             load_main($(this).attr('href'));
         });
         $(".navbar-brand").on("click", function(e) {
-            e.preventDefault();
             //remove all highlited content in navbar 
             //(maybe should highlight home)
             $(".nav").find(".active").removeClass("active");
@@ -29,15 +31,20 @@ function initialize() {
     });
 }
 
+function get_current_page() {
+    var url = window.location.href;
+    return url.slice(url.indexOf("#!"));
+}
+
 function load_main(option) {
     switch(option) {
-        case "about.html":
+        case "#!about":
             load_about();
             break;
-        case "publications.html":
+        case "#!publications":
             load_publications();
             break;
-        case "work.html":
+        case "#!work":
             load_work();
             break;
         default:
