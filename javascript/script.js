@@ -2,14 +2,14 @@ var apiKey = "AIzaSyC8OVwZk45gWWus2l6w-s6tEdyx8TtV-i0"
 var blogId = "1713900942386127940"
 
 $(window).on("popstate", function () {
-    load_main(get_url_arameter(window.location.href, "show"));
+    load_main(get_url_parameter(window.location.href, "show"));
 });
 
 function initialize() {
     var deferred = [];
     deferred.push(load_header());
     deferred.push(load_footer());
-    deferred.push(load_main(get_url_arameter(window.location.href, "show")));
+    deferred.push(load_main(get_url_parameter(window.location.href, "show")));
     $.when.apply($, deferred).done(function() {
         //Page ready
         $(".nav a").on("click", function(e) {
@@ -22,7 +22,7 @@ function initialize() {
             //push history state
             window.history.pushState("", "", $(this).attr('href'));
             //load chosen option in the main page
-            load_main(get_url_arameter($(this).attr('href'), "show"));
+            load_main(get_url_parameter($(this).attr('href'), "show"));
         });
         $(".navbar-brand").on("click", function(e) {
             e.preventDefault();
@@ -32,12 +32,12 @@ function initialize() {
             //push history state
             window.history.pushState("", "", $(this).attr('href'));
             //load home
-            load_main(get_url_arameter($(this).attr('href'), "show"));
+            load_main(get_url_parameter($(this).attr('href'), "show"));
         });
     });
 }
 
-function get_url_arameter(url, key) {
+function get_url_parameter(url, key) {
   return decodeURIComponent((new RegExp('[?|&]' + key + '=' + '([^&;]+?)(&|#|;|$)').exec(url)||[,""])[1].replace(/\+/g, '%20'))||null
 }
 
