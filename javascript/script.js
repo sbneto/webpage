@@ -1,50 +1,55 @@
 var apiKey = "AIzaSyC8OVwZk45gWWus2l6w-s6tEdyx8TtV-i0"
 var blogId = "1713900942386127940"
 
-$(window).on("hashchange", function () {
-    load_main(get_current_page());
+$(window).on("popstate", function () {
+    load_main(get_url_arameter(window.location.href, "show"));
 });
 
 function initialize() {
     var deferred = [];
     deferred.push(load_header());
     deferred.push(load_footer());
-    deferred.push(load_main(get_current_page()));
+    deferred.push(load_main(get_url_arameter(window.location.href, "show")));
     $.when.apply($, deferred).done(function() {
         //Page ready
         $(".nav a").on("click", function(e) {
+            e.preventDefault();
             //colapse right after click
             $(".collapse").collapse("hide");
             //highlight the option selected
             $(".nav").find(".active").removeClass("active");
             $(this).parent().addClass("active");
+            //push history state
+            window.history.pushState("", "", $(this).attr('href'));
             //load chosen option in the main page
-            load_main($(this).attr('href'));
+            load_main(get_url_arameter($(this).attr('href'), "show"));
         });
         $(".navbar-brand").on("click", function(e) {
+            e.preventDefault();
             //remove all highlited content in navbar 
             //(maybe should highlight home)
             $(".nav").find(".active").removeClass("active");
+            //push history state
+            window.history.pushState("", "", $(this).attr('href'));
             //load home
-            load_main($(this).attr('href'))
+            load_main(get_url_arameter($(this).attr('href'), "show"));
         });
     });
 }
 
-function get_current_page() {
-    var url = window.location.href;
-    return url.slice(url.indexOf("#!"));
+function get_url_arameter(url, key) {
+  return decodeURIComponent((new RegExp('[?|&]' + key + '=' + '([^&;]+?)(&|#|;|$)').exec(url)||[,""])[1].replace(/\+/g, '%20'))||null
 }
 
 function load_main(option) {
     switch(option) {
-        case "#!about":
+        case "about":
             load_about();
             break;
-        case "#!publications":
+        case "publications":
             load_publications();
             break;
-        case "#!work":
+        case "work":
             load_work();
             break;
         default:
