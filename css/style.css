@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  font-size: none !important;
+  font-size: 1em;
   background-color: #ffffff;
   padding-top: 0px;
   padding-bottom: 0px;
