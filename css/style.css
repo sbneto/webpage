@@ -1,5 +1,25 @@
-body {
+html {
   font-size: 14px;
+}
+
+@media only screen and (min-width: 480px) {
+  html{font-size: 16px;}
+}
+
+@media only screen and (min-width: 768px) {
+  html{font-size: 18px;}
+}
+
+@media only screen and (min-width: 992px) {
+  html{font-size: 20px;}
+}
+
+@media only screen and (min-width: 1200px) {
+  html{font-size: 22px;}
+}
+
+body {
+  font-size: 1rem;
   background-color: #ffffff;
   padding-top: 0px;
   padding-bottom: 0px;
@@ -7,26 +27,17 @@ body {
   overflow-y: scroll;
 }
 
-@media only screen and (min-width: 480px) {
-  body{font-size: 16px;}
-}
-
-@media only screen and (min-width: 768px) {
-  body{font-size: 18px;}
-}
-
-@media only screen and (min-width: 992px) {
-  body{font-size: 20px;}
-}
-
-@media only screen and (min-width: 1200px) {
-  body{font-size: 22px;}
-}
-
 img {
   max-width: 100%;
   height: auto;
 }
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.17rem; }
+h4 { font-size: 1.12rem; }
+h5 { font-size: .83rem; }
+h6 { font-size: .75rem; }
 
 /** {
     outline: 1px solid red;
@@ -34,6 +45,10 @@ img {
 */
 .navbar {
   font: 18px Arial, sans-serif; 
+}
+
+.serif-font {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .navbar-header {
@@ -55,7 +70,7 @@ img {
 }
 
 .jumbotron {
-  font-size: 1em;
+  font-size: 1rem;
   margin-top: 50px;
   padding-top: 15px;
   padding-bottom: 15px;
@@ -67,11 +82,11 @@ img {
 }
 
 #info_name {
-  font: 1.4em Arial, sans-serif; 
+  font-size: 1.5rem;
 }
 
 .sidebar-module {
-  font-size: 0.7em;
+  font-size: 0.7rem;
 }
 
 /* Sticky footer */
@@ -80,7 +95,7 @@ html {
   min-height: 100%;
 }
 #footer {
-  font-size: 0.7em;
+  font-size: 0.7rem;
   position: absolute;
   bottom: 0;
   width: 100%;

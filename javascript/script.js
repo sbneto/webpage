@@ -2,6 +2,7 @@ var apiKey = "AIzaSyC8OVwZk45gWWus2l6w-s6tEdyx8TtV-i0"
 var blogId = "1713900942386127940"
 
 $(window).on("popstate", function () {
+    //load main page when back button is clicked
     load_main(get_url_parameter(window.location.href, "show"));
 });
 
@@ -9,29 +10,16 @@ function initialize() {
     var deferred = [];
     deferred.push(load_header());
     deferred.push(load_footer());
-    deferred.push(load_main(get_url_parameter(window.location.href, "show")));
     $.when.apply($, deferred).done(function() {
         //Page ready
-        $(".nav a").on("click", function(e) {
+        //load main page
+        load_main(get_url_parameter(window.location.href, "show"));
+        //bind on click listeners
+        $(".nav a, .navbar-brand").on("click", function(e) {
             e.preventDefault();
-            //colapse right after click
-            $(".collapse").collapse("hide");
-            //highlight the option selected
-            $(".nav").find(".active").removeClass("active");
-            $(this).parent().addClass("active");
             //push history state
             window.history.pushState("", "", $(this).attr('href'));
             //load chosen option in the main page
-            load_main(get_url_parameter($(this).attr('href'), "show"));
-        });
-        $(".navbar-brand").on("click", function(e) {
-            e.preventDefault();
-            //remove all highlited content in navbar 
-            //(maybe should highlight home)
-            $(".nav").find(".active").removeClass("active");
-            //push history state
-            window.history.pushState("", "", $(this).attr('href'));
-            //load home
             load_main(get_url_parameter($(this).attr('href'), "show"));
         });
     });
@@ -41,7 +29,18 @@ function get_url_parameter(url, key) {
   return decodeURIComponent((new RegExp('[?|&]' + key + '=' + '([^&;]+?)(&|#|;|$)').exec(url)||[,""])[1].replace(/\+/g, '%20'))||null
 }
 
+function highlight_navbar(option) {
+    $(".nav").find(".active").removeClass("active");
+    $(".nav").find("[href]").each(function(i, e) {
+        if (get_url_parameter($(e).attr('href'), "show") == option) {
+            $(e).parent().addClass("active");
+        }
+    });
+}
+
 function load_main(option) {
+    $(".collapse").collapse("hide");
+    highlight_navbar(option);
     switch(option) {
         case "about":
             load_about();
