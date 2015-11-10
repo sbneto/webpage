@@ -251,14 +251,15 @@ function BibtexDisplay() {
     return value;
   }
 
-  this.displayBibtex = function(input, output, template) {
+  this.displayBibtex = function(input, output_id, template) {
     // parse bibtex input
     var b = new BibtexParser();
+    var output = $("#" + output_id);
     b.setInput(input);
     b.bibtex();
     
     // save old entries to remove them later
-    var old = output.find("*");    
+    var old = output.find("*");
 
     // iterate over bibTeX entries
     var entries = b.getEntries();
