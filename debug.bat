@@ -1,2 +1,1 @@
 python debug.py
-pause
