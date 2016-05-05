@@ -42,8 +42,8 @@ function load_main(option) {
     $(".collapse").collapse("hide");
     highlight_navbar(option);
     switch(option) {
-        case "about":
-            load_about();
+        case "bio":
+            load_bio();
             break;
         case "publications":
             load_publications();
@@ -89,8 +89,8 @@ function load_home() {
     return 
 }
 
-function load_about() {
-    return deffered_load("#main", "about.html");
+function load_bio() {
+    return deffered_load("#main", "bio.html");
 }
 
 function load_publications() {
